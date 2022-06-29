@@ -1,3 +1,4 @@
 *.exe
 template/template.cpp
 temp/*
+.vscode/*
