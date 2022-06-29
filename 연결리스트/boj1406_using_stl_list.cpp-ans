@@ -1,0 +1,71 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void solve()
+{
+    string S;
+    cin >> S;
+
+    int N = S.size();
+
+    int M;
+    cin >> M;
+
+    // 초기 문자열을 링크드리스트로 생성
+    list<char> li;
+
+    for (auto s : S)
+    {
+        li.push_back(s);
+    }
+
+    list<char>::iterator cursor = li.end();
+    // M개의 명령 수행
+    for (int m = 0; m < M; m++)
+    {
+        char C;
+        cin >> C;
+
+        char add; // 새로 추가하는 문자
+        switch (C)
+        {
+        case 'L':
+            // 커서가 맨 앞이 아닐 경우 한 칸 앞으로
+            if (cursor != li.begin())
+            {
+                cursor--;
+            }
+            break;
+        case 'D':
+            // 커서가 맨 뒤가 아닐 경우 한 칸 뒤로
+            if (cursor != li.end())
+            {
+                cursor++;
+            }
+            break;
+        case 'B':
+            // 커서가 맨 앞이 아닐 경우 왼쪽 문자를 삭제
+            if (cursor != li.begin())
+            {
+                cursor--;
+                cursor = li.erase(cursor);
+            }
+            break;
+        case 'P':
+            cin >> add;
+            li.insert(cursor, add);
+            break;
+        }
+    }
+
+    for (auto k : li)
+        cout << k;
+}
+
+int main()
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+
+    solve();
+}
